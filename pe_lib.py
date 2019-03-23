@@ -787,3 +787,14 @@ def problem52(start, end):
 			break
 
 	return saveNum
+
+def combinatoric_selection(n, r):
+	return (factorial(n)/((factorial(r)) * factorial(n-r)))
+
+def problem_53(combinations):
+	count = 0
+	for i in range(1, combinations):
+		for j in range(1, i):
+			if combinatoric_selection(i,j) > 1000000:
+				count += 1
+	return count
