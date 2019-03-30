@@ -10,6 +10,22 @@ class Card(namedtuple('Card', 'face, suit')):
 	def __repr__(self):
 		return ''.join(self)
 
+def royal_flush(hand):
+	royalface = "TJQKA"
+	# sort the cards based on the face rank of each card
+	ordered = sorted(hand, key=lambda card: (faces.index(card.face), card.suit))
+
+	first_card = ordered[0]
+	other_cards = ordered[1:]
+
+	# check if all are of the same suit
+	if all(first_card.suit == card.suit for card in other_cards):
+		# check if they are in sequential order
+		# compare the ordered faces substring with the face list (which is converted to string)
+		if ''.join(card.face for card in ordered) in royalface:
+			return 'royal-flush', ordered[-1].face
+	return False
+
 def straight_flush(hand):
 	# sort the cards based on the face rank of each card
 	ordered = sorted(hand, key=lambda card: (faces.index(card.face), card.suit))
@@ -133,7 +149,7 @@ def create_hand_tuple(cards = "5D 8C 9S JS AC"):
 	return hand;
 
 # functions
-handrankorder = (straight_flush,four_of_a_kind,full_house,
+handrankorder = (royal_flush,straight_flush,four_of_a_kind,full_house,
 				flush,straight,three_of_a_kind,two_pair,
 				one_pair,high_card)
 
