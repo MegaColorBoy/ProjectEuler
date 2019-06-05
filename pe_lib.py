@@ -798,3 +798,21 @@ def problem_53(combinations):
 			if combinatoric_selection(i,j) > 1000000:
 				count += 1
 	return count
+
+# Count the number of lychrel numbers below ten-thousand
+def lychrel_numbers():
+	lychrel_list = []
+	for i in range(1, 10001):
+		x = i
+		y = int(str(x)[::-1])
+		z = x + y
+		counter = 0
+		while not checkPalindrome(z):
+			z = z + int(str(z)[::-1])
+			if counter < 50:
+				counter += 1
+			else:
+				# print "%d is a lychrel number" % (x)
+				lychrel_list.append(x)
+				break
+	print len(lychrel_list)
