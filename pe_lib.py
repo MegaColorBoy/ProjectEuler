@@ -816,3 +816,14 @@ def lychrel_numbers():
 				lychrel_list.append(x)
 				break
 	print len(lychrel_list)
+
+# Powerful Digit Sum. Find max digit sum in which a,b < 100
+def pow_digit_sum():
+	max_sum = 0
+	for a in range(1, 100):
+		for b in range(1, 100):
+			x = a**b
+			total = sum(map(int, str(x)))
+			if total > max_sum:
+				max_sum = total
+	print max_sum
