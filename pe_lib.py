@@ -827,3 +827,16 @@ def pow_digit_sum():
 			if total > max_sum:
 				max_sum = total
 	print max_sum
+
+# Square root convergents
+def square_root_conv():
+	numerator = 3
+	denominator = 2
+	expansions = 1000
+	count = 0
+	for i in range(0, expansions):
+		numerator += 2 * denominator
+		denominator = numerator - denominator
+		if num_digits(numerator) > num_digits(denominator):
+			count += 1
+	print count
